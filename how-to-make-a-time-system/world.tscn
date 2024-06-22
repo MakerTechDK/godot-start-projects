@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://dlj7mrar0pn24"]
+[gd_scene load_steps=5 format=4 uid="uid://dlj7mrar0pn24"]
 
 [ext_resource type="Texture2D" uid="uid://cm0klh34hoj16" path="res://assets/tiny_town.png" id="1_e2grb"]
 [ext_resource type="PackedScene" uid="uid://c5m6bdtqa4nhd" path="res://player/player.tscn" id="2_tr7g3"]
-[ext_resource type="Script" path="res://time/time_system.gd" id="3_fkmfc"]
-[ext_resource type="Script" path="res://time/date_time.gd" id="4_e7rhl"]
-[ext_resource type="PackedScene" uid="uid://cp3q4tfnjhxw1" path="res://time/time_gui.tscn" id="4_gpju1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lu8u"]
 texture = ExtResource("1_e2grb")
@@ -156,13 +153,6 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_4lu8u")
 
-[sub_resource type="Resource" id="Resource_s3f6r"]
-script = ExtResource("4_e7rhl")
-seconds = 0
-minutes = 0
-hours = 0
-days = 0
-
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
@@ -184,21 +174,3 @@ tile_set = SubResource("TileSet_5xxjr")
 [node name="Player" parent="." instance=ExtResource("2_tr7g3")]
 z_index = 1
 position = Vector2(115, 107)
-
-[node name="TimeSystem" type="Node" parent="."]
-script = ExtResource("3_fkmfc")
-date_time = SubResource("Resource_s3f6r")
-
-[node name="GUI" type="CanvasLayer" parent="."]
-
-[node name="TimeGUI" parent="GUI" instance=ExtResource("4_gpju1")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -144.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 47.0
-grow_horizontal = 0
-
-[connection signal="time_updated" from="TimeSystem" to="GUI/TimeGUI" method="update"]
